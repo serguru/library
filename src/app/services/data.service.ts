@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError, tap, map, filter } from 'rxjs/operators';
 import { Author } from '../models/author';
+import { Book } from '../models/book';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   private authorsUrl = 'api/authors';
+  private booksUrl = 'api/books';
 
 
   constructor(private http: HttpClient) {
   }
 
+  //#region Authors
+
   getAuthors(): Observable<Author[]> {
     return this.http.get<Author[]>(this.authorsUrl)
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -77,5 +80,15 @@ export class DataService {
     console.error(err);
     return throwError(errorMessage);
   }
+//#endregion
+
+getBooks(author: Author): Observable<Book[]> {
+  return this.http.get<Book[]>(this.booksUrl)
+    .pipe(
+      map(books => books.filter(book => book.authorIds.includes(author.id))),
+      catchError(this.handleError)
+    );
+}
+
 
 }

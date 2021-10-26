@@ -14,12 +14,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthorsShellComponent } from './components/authors-shell/authors-shell.component';
 import { authorReducer } from './state/authors/author.reducer';
 import { AuthorEffects } from './state/authors/author.effects';
+import { MaterialModule } from './material/material.module';
+import { BooksComponent } from './components/books/books.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorsComponent,
     AuthorsShellComponent,
+    BooksComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { AuthorEffects } from './state/authors/author.effects';
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature('authors', authorReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AuthorEffects])
+    EffectsModule.forRoot([AuthorEffects]),
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

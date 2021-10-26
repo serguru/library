@@ -1,0 +1,9 @@
+.wrapper {
+    height: 100%;
+    display: flex;
+    padding: 2em;
+}
+
+.authors {
+    margin-right: 2em;
+}

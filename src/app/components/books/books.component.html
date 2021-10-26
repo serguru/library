@@ -1,0 +1,6 @@
+<ng-container *ngIf="books">
+    <div *ngFor="let book of books"
+    (click)="bookClick(book)"
+    [ngClass]="bookClass(book)"
+    >{{book.name}}</div>
+</ng-container>

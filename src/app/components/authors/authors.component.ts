@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Author } from 'src/app/models/author';
 //import { DataService } from 'src/app/services/data.service';
 
@@ -9,17 +9,26 @@ import { Author } from 'src/app/models/author';
 })
 export class AuthorsComponent implements OnInit {
 
-  @Input()
-  authors: Author[];
+  @Input() authors: Author[];
+  @Input() selected: Author;
+  @Output() authorWasSelected = new EventEmitter<Author>();
+  
 
-//  constructor(public dataService: DataService) { }
+
   constructor() { }
 
   ngOnInit(): void {
-    // this.dataService.getAuthors().subscribe(
-    //   authors => this.authors = authors
-    // )
 
   }
 
+  authorClass(author: Author) {
+    return {
+      "author": true,
+      "selected": this.selected && this.selected === author
+    }
+  }
+
+  authorClick(author: Author) {
+    this.authorWasSelected.emit(author);
+  }
 }
