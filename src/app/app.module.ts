@@ -16,6 +16,8 @@ import { authorReducer } from './state/authors/author.reducer';
 import { AuthorEffects } from './state/authors/author.effects';
 import { MaterialModule } from './material/material.module';
 import { BooksComponent } from './components/books/books.component';
+import { bookReducer } from './state/books/book.reducer';
+import { BookEffects } from './state/books/book.effects';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,9 @@ import { BooksComponent } from './components/books/books.component';
     HttpClientInMemoryWebApiModule.forRoot(LibraryData),
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature('authors', authorReducer),
+    StoreModule.forFeature('books', bookReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AuthorEffects]),
+    EffectsModule.forRoot([AuthorEffects, BookEffects]),
     MaterialModule
   ],
   providers: [],

@@ -82,10 +82,10 @@ export class DataService {
   }
 //#endregion
 
-getBooks(author: Author): Observable<Book[]> {
+getBooks(authorId: number): Observable<Book[]> {
   return this.http.get<Book[]>(this.booksUrl)
     .pipe(
-      map(books => books.filter(book => book.authorIds.includes(author.id))),
+      map(books => books.filter(book => book.authorIds.includes(authorId))),
       catchError(this.handleError)
     );
 }

@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
 import { AuthorState } from "../app.state";
-import { AuthorApiActions } from "./actions";
+import { AuthorApiActions, AuthorPageActions } from "./actions";
 
 const initialState: AuthorState = {
-    currentAuthorId: null,
+    currentAuthorId: 0,
     authors: [],
     error: ''
 }
@@ -23,5 +23,11 @@ export const authorReducer = createReducer<AuthorState>(
             authors: [],
             error: action.error
         }
-    })
+    }),
+    on(AuthorPageActions.setCurrentAuthor, (state, action): AuthorState => {
+        return {
+            ...state,
+            currentAuthorId: action.currentAuthorId
+        };
+    }),
 )

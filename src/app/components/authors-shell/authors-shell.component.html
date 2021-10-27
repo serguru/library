@@ -1,9 +1,9 @@
 <div class="wrapper">
     <div class="authors">
         <app-authors [authors]="authors$ | async" (authorWasSelected)="authorWasSelected($event)"
-            [selected]="selectedAuthor"></app-authors>
+            [selected]="selectedAuthor$ | async"></app-authors>
     </div>
     <div>
-        <app-books [books]="books" (bookWasSelected)="bookWasSelected($event)" [selected]="selectedBook"></app-books>
+        <app-books [books]="books$ | async" (bookWasSelected)="bookWasSelected($event)" [selected]="selectedBook$ | async"></app-books>
     </div>
 </div>
