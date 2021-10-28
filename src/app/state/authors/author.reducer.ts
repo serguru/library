@@ -30,4 +30,14 @@ export const authorReducer = createReducer<AuthorState>(
             currentAuthorId: action.currentAuthorId
         };
     }),
+    on(AuthorApiActions.updateAuthorSuccess, (state, action): AuthorState => {
+        const updatedAuthors = state.authors.map(
+          item => action.author.id === item.id ? action.author : item);
+        return {
+          ...state,
+          authors: updatedAuthors,
+          currentAuthorId: action.author.id,
+          error: ''
+        };
+      }),
 )

@@ -1,9 +1,25 @@
+<mat-toolbar>
+    <button mat-button (click)="addAuthor()">
+        <mat-icon>add</mat-icon>
+        Add author
+    </button>
+    <button mat-button (click)="editAuthor()" [disabled]="authorDisabled">
+        <mat-icon>edit</mat-icon>
+        Edit author
+    </button>
+    <button mat-button (click)="deleteAuthor()" [disabled]="authorDisabled">
+        <mat-icon>delete</mat-icon>
+        Delete author
+    </button>
+</mat-toolbar>
+
 <div class="wrapper">
     <div class="authors">
         <app-authors [authors]="authors$ | async" (authorWasSelected)="authorWasSelected($event)"
-            [selected]="selectedAuthor$ | async"></app-authors>
+            [selected]="selectedAuthor"></app-authors>
     </div>
     <div>
-        <app-books [books]="books$ | async" (bookWasSelected)="bookWasSelected($event)" [selected]="selectedBook$ | async"></app-books>
+        <app-books [books]="books$ | async" (bookWasSelected)="bookWasSelected($event)"
+            [selected]="selectedBook$ | async"></app-books>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +19,7 @@ import { MaterialModule } from './material/material.module';
 import { BooksComponent } from './components/books/books.component';
 import { bookReducer } from './state/books/book.reducer';
 import { BookEffects } from './state/books/book.effects';
+import { AuthorDialogComponent } from './components/author-dialog/author-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,11 @@ import { BookEffects } from './state/books/book.effects';
     AuthorsComponent,
     AuthorsShellComponent,
     BooksComponent,
+    AuthorDialogComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     HttpClientInMemoryWebApiModule.forRoot(LibraryData),

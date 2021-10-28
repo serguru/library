@@ -19,54 +19,54 @@ export class AuthorEffects {
         ofType(AuthorPageActions.loadAuthors),
         mergeMap(() => this.dataService.getAuthors()
           .pipe(
-            map(authors => 
+            map(authors =>
               AuthorApiActions.loadAuthorsSuccess({ authors })),
-            catchError(error => 
+            catchError(error =>
               of(AuthorApiActions.loadAuthorsFailure({ error })))
           )
         )
       );
   });
-  /*
-    updateProduct$ = createEffect(() => {
-      return this.actions$
-        .pipe(
-          ofType(ProductPageActions.updateProduct),
-          concatMap(action =>
-            this.productService.updateProduct(action.product)
-              .pipe(
-                map(product => ProductApiActions.updateProductSuccess({ product })),
-                catchError(error => of(ProductApiActions.updateProductFailure({ error })))
-              )
-          )
-        );
-    });
-  
-    createProduct$ = createEffect(() => {
-      return this.actions$
-        .pipe(
-          ofType(ProductPageActions.createProduct),
-          concatMap(action =>
-            this.productService.createProduct(action.product)
-              .pipe(
-                map(product => ProductApiActions.createProductSuccess({ product })),
-                catchError(error => of(ProductApiActions.createProductFailure({ error })))
-              )
-          )
-        );
-    });
-  
-    deleteProduct$ = createEffect(() => {
-      return this.actions$
-        .pipe(
-          ofType(ProductPageActions.deleteProduct),
-          mergeMap(action =>
-            this.productService.deleteProduct(action.productId).pipe(
-              map(() => ProductApiActions.deleteProductSuccess({ productId: action.productId })),
-              catchError(error => of(ProductApiActions.deleteProductFailure({ error })))
+
+  updateAuthor$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AuthorPageActions.updateAuthor),
+        concatMap(action =>
+          this.dataService.updateAuthor(action.author)
+            .pipe(
+              map(author => AuthorApiActions.updateAuthorSuccess({ author })),
+              catchError(error => of(AuthorApiActions.updateAuthorFailure({ error })))
             )
+        )
+      );
+  });
+
+  createAuthor$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AuthorPageActions.createAuthor),
+        concatMap(action =>
+          this.dataService.createAuthor(action.author)
+            .pipe(
+              map(author => AuthorApiActions.createAuthorSuccess({ author })),
+              catchError(error => of(AuthorApiActions.createAuthorFailure({ error })))
+            )
+        )
+      );
+  });
+
+  deleteAuthor$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AuthorPageActions.deleteAuthor),
+        mergeMap(action =>
+          this.dataService.deleteAuthor(action.authorId).pipe(
+            map(() => AuthorApiActions.deleteAuthorSuccess({ authorId: action.authorId })),
+            catchError(error => of(AuthorApiActions.deleteAuthorFailure({ error })))
           )
-        );
-    });
-    */
+        )
+      );
+  });
+
 }
